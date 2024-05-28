@@ -1,3 +1,5 @@
+import java.util.Properties
+
 plugins {
     alias(libs.plugins.android.application)
     alias(libs.plugins.jetbrains.kotlin.android)
@@ -18,6 +20,13 @@ android {
         vectorDrawables {
             useSupportLibrary = true
         }
+
+        // Load secrets from local file
+        val properties = Properties()
+        properties.load(project.rootProject.file("keystore.properties").inputStream())
+        buildConfigField("String", "MOVIE_DB_API_KEY", properties.getProperty("MOVIE_DB_API_KEY"))
+        // Now you can use it like this:
+        // private val apiKey = BuildConfig.API_KEY_NAME
     }
 
     buildTypes {
