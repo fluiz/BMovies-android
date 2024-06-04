@@ -10,6 +10,10 @@ android {
     namespace = "dev.fal.b_movies"
     compileSdk = 34
 
+    buildFeatures {
+        buildConfig = true
+    }
+
     defaultConfig {
         applicationId = "dev.fal.b_movies"
         minSdk = 29
